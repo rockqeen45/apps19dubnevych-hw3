@@ -1,6 +1,8 @@
 package ua.edu.ucu;
 
 
+import java.util.Objects;
+
 class Student {
 
     private double GPA;
@@ -36,4 +38,19 @@ class Student {
         return "Student{name=" + name + ", surname=" + surname + ", " + "GPA=" + GPA + ", year=" + year + '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Student)) return false;
+        Student student = (Student) o;
+        return Double.compare(student.getGPA(), getGPA()) == 0 &&
+                getYear() == student.getYear() &&
+                Objects.equals(getName(), student.getName()) &&
+                Objects.equals(getSurname(), student.getSurname());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getGPA(), getYear(), getName(), getSurname());
+    }
 }
