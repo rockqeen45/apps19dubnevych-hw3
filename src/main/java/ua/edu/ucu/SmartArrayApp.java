@@ -57,7 +57,8 @@ public class SmartArrayApp {
         MyPredicate pr = new MyPredicate() {
             @Override
             public boolean test(Object t) {
-                return ((Student) t).getYear() == 2 && ((Student) t).getGPA() >= 4;
+                Student s = (Student) t;
+                return s.getYear() == 2 && s.getGPA() >= 4;
             }
         };
         stdArray = new FilterDecorator(stdArray, pr);
@@ -65,9 +66,9 @@ public class SmartArrayApp {
         MyComparator cmp = new MyComparator() {
             @Override
             public int compare(Object o1, Object o2) {
-                Student stud1 = (Student) o1;
-                Student stud2 = (Student) o2;
-                return stud1.getSurname().compareTo(stud2.getSurname());
+                Student student1 = (Student) o1;
+                Student student2 = (Student) o2;
+                return student1.getSurname().compareTo(student2.getSurname());
             }
         };
         stdArray = new SortDecorator(stdArray, cmp);

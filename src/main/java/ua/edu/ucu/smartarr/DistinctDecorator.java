@@ -1,8 +1,5 @@
 package ua.edu.ucu.smartarr;
 
-import ua.edu.ucu.functions.MyComparator;
-
-//
 
 public class DistinctDecorator extends SmartArrayDecorator {
 
