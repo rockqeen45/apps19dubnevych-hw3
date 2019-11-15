@@ -9,12 +9,12 @@ public class SortDecorator extends SmartArrayDecorator {
         super(smartArray);
         BaseArray sortArr = new BaseArray(smartArray.toArray());
 
-        for (int i = 0; i < smartArray.size(); i++) {
+        for (int i = 0; i < sortArr.size(); i++) {
             Object min = sortArr.get(i);
             int minIndex = i;
-            for (int j = i; j < sortArr.size(); j++) {
+            for (int j = i + 1; j < sortArr.size(); j++) {
                 if (cmp.compare(min, sortArr.get(j)) > 0) {
-                    min = smartArray.get(j);
+                    min = sortArr.get(j);
                     minIndex = j;
                 }
             }
