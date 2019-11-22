@@ -6,8 +6,8 @@ import java.util.Arrays;
 public class BaseArray implements SmartArray {
     private Object[] arr;
 
-    public BaseArray(Object[] arr){
-        if ( arr != null){
+    public BaseArray(Object[] arr) {
+        if (arr != null) {
             this.arr = arr.clone();
         }
     }
@@ -36,7 +36,7 @@ public class BaseArray implements SmartArray {
         arr[i] = e;
     }
 
-    public void add(Object e){
+    public void add(Object e) {
         Object[] newArr = new Object[arr.length + 1];
         for (int i = 0; i < arr.length; i++) {
             newArr[i] = arr[i];

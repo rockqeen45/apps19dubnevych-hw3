@@ -18,10 +18,10 @@ public class SmartArrayApp {
             }
         };
 
-        MyComparator cmp = new MyComparator() {
+        MyComparator<Integer> cmp = new MyComparator<Integer>() {
             @Override
-            public int compare(Object o1, Object o2) {
-                return ((Integer) o1) - ((Integer) o2);
+            public int compare(Integer fst, Integer snd) {
+                return fst - snd;
             }
         };
 
@@ -80,7 +80,7 @@ public class SmartArrayApp {
         stdArray = new FilterDecorator(stdArray, pr);
         stdArray = new SortDecorator(stdArray, cmp);
         stdArray = new MapDecorator(stdArray, func);
-        
+
         Object[] result = stdArray.toArray();
         return Arrays.copyOf(result, result.length, String[].class);
     }

@@ -2,8 +2,8 @@ package ua.edu.ucu.smartarr;
 
 public abstract class SmartArrayDecorator implements SmartArray {
 
-    protected SmartArray smartArray;
-    protected String description;
+    SmartArray smartArray;
+    String description;
 
     public SmartArrayDecorator(SmartArray smartArray, String description) {
         this.smartArray = smartArray;
@@ -21,12 +21,12 @@ public abstract class SmartArrayDecorator implements SmartArray {
     }
 
     @Override
-    public Object get(int i){
+    public Object get(int i) {
         return smartArray.get(i);
     }
 
     @Override
-    public void set(int i, Object e){
+    public void set(int i, Object e) {
         smartArray.set(i, e);
     }
 }
