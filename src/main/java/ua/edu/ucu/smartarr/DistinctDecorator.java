@@ -1,30 +1,28 @@
 package ua.edu.ucu.smartarr;
 
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 public class DistinctDecorator extends SmartArrayDecorator {
 
-
     public DistinctDecorator(SmartArray smartArray) {
-        super(smartArray, smartArray.operationDescription());
-        BaseArray distinctArr = new BaseArray(new Object[0]);
+        super(smartArray);
+    }
 
-        for (int i = 0; i < smartArray.size(); i++) {
-            boolean hasDuplicate = false;
-            for (int j = 0; j < distinctArr.size(); j++) {
-                if (smartArray.get(i).equals(distinctArr.get(j))) {
-                    hasDuplicate = true;
-                    break;
-                }
-            }
-            if (!hasDuplicate) {
-                distinctArr.add(smartArray.get(i));
-            }
-        }
-        this.smartArray = distinctArr;
+    @Override
+    public Object[] toArray() {
+        return Arrays.stream(smartArray.toArray()).distinct().toArray();
     }
 
     @Override
     public String operationDescription() {
-        return "Distinct " + description;
+        return "Distinct " + smartArray.operationDescription();
+    }
+
+    @Override
+    public int size() {
+        return this.toArray().length;
     }
 }

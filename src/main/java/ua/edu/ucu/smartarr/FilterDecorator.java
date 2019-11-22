@@ -2,23 +2,30 @@ package ua.edu.ucu.smartarr;
 
 import ua.edu.ucu.functions.MyPredicate;
 
+import java.util.Arrays;
+
 // Tests every element and removes it if it doesn't satisfy MyPredicate
 public class FilterDecorator extends SmartArrayDecorator {
 
-    public FilterDecorator(SmartArray smartArray, MyPredicate pr) {
-        super(smartArray, smartArray.operationDescription());
-        BaseArray filterArr = new BaseArray(new Object[0]);
+    private MyPredicate predicate;
 
-        for (int i = 0; i < smartArray.size(); i++) {
-            if (pr.test(smartArray.get(i))) {
-                filterArr.add(smartArray.get(i));
-            }
-        }
-        this.smartArray = filterArr;
+    public FilterDecorator(SmartArray smartArray, MyPredicate predicate) {
+        super(smartArray);
+        this.predicate = predicate;
+    }
+
+    @Override
+    public Object[] toArray() {
+        return Arrays.stream(smartArray.toArray()).filter(predicate).toArray();
     }
 
     @Override
     public String operationDescription() {
-        return "Filter " + description;
+        return "Filter " + smartArray.operationDescription();
+    }
+
+    @Override
+    public int size() {
+        return this.toArray().length;
     }
 }

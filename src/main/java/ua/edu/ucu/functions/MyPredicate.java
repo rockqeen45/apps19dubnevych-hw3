@@ -5,11 +5,14 @@
  */
 package ua.edu.ucu.functions;
 
+import java.util.function.Predicate;
+
 /**
  *
  * @author Andrii_Rodionov
  */
-public interface MyPredicate {
+public interface MyPredicate extends Predicate<Object> {
 
+    @Override
     boolean test(Object t);
 }

@@ -18,10 +18,10 @@ public class SmartArrayApp {
             }
         };
 
-        MyComparator<Integer> cmp = new MyComparator<Integer>() {
+        MyComparator cmp = new MyComparator() {
             @Override
-            public int compare(Integer fst, Integer snd) {
-                return fst - snd;
+            public int compare(Object fst, Object snd) {
+                return (Integer) fst - (Integer) snd;
             }
         };
 
@@ -60,10 +60,12 @@ public class SmartArrayApp {
             }
         };
 
-        MyComparator<Student> cmp = new MyComparator<Student>() {
+        MyComparator cmp = new MyComparator() {
             @Override
-            public int compare(Student fst, Student snd) {
-                return fst.getSurname().compareTo(snd.getSurname());
+            public int compare(Object fst, Object snd) {
+                Student first = (Student) fst;
+                Student second = (Student) snd;
+                return first.getSurname().compareTo(second.getSurname());
             }
         };
 

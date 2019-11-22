@@ -14,7 +14,7 @@ public class BaseArray implements SmartArray {
 
     @Override
     public Object[] toArray() {
-        return Arrays.copyOf(this.arr, this.arr.length);
+        return Arrays.copyOf(arr, arr.length);
     }
 
     @Override
@@ -25,24 +25,6 @@ public class BaseArray implements SmartArray {
     @Override
     public int size() {
         return arr.length;
-    }
-
-    public Object get(int i) {
-        return arr[i];
-    }
-
-    @Override
-    public void set(int i, Object e) {
-        arr[i] = e;
-    }
-
-    public void add(Object e) {
-        Object[] newArr = new Object[arr.length + 1];
-        for (int i = 0; i < arr.length; i++) {
-            newArr[i] = arr[i];
-        }
-        newArr[newArr.length - 1] = e;
-        arr = newArr;
     }
 
 }

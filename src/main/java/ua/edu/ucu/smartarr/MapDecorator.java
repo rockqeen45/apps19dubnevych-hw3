@@ -2,23 +2,33 @@ package ua.edu.ucu.smartarr;
 
 import ua.edu.ucu.functions.MyFunction;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 // Map every element to another object using MyFunction
 public class MapDecorator extends SmartArrayDecorator {
 
-    public MapDecorator(SmartArray smartArray, MyFunction func) {
-        super(smartArray, smartArray.operationDescription());
-        BaseArray mapArr = new BaseArray(new Object[0]);
+    private MyFunction function;
 
-        for (int i = 0; i < smartArray.size(); i++) {
-            Object temp = func.apply(smartArray.get(i));
-            mapArr.add(temp);
-        }
-        this.smartArray = mapArr;
+    public MapDecorator(SmartArray smartArray, MyFunction func) {
+        super(smartArray);
+        this.function = func;
     }
 
 
     @Override
+    public Object[] toArray() {
+        return Arrays.stream(smartArray.toArray()).map(function).toArray();
+    }
+
+    @Override
     public String operationDescription() {
-        return "Map " + description;
+        return "Map " + smartArray.operationDescription();
+    }
+
+    @Override
+    public int size() {
+        return this.toArray().length;
     }
 }
