@@ -6,7 +6,7 @@ import ua.edu.ucu.functions.MyFunction;
 public class MapDecorator extends SmartArrayDecorator {
 
     public MapDecorator(SmartArray smartArray, MyFunction func) {
-        super(smartArray);
+        super(smartArray, smartArray.operationDescription());
         BaseArray mapArr = new BaseArray(new Object[0]);
 
         for (int i = 0; i < smartArray.size(); i++) {
@@ -14,5 +14,11 @@ public class MapDecorator extends SmartArrayDecorator {
             mapArr.add(temp);
         }
         this.smartArray = mapArr;
+    }
+
+
+    @Override
+    public String operationDescription() {
+        return "Map " + description;
     }
 }

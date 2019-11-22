@@ -3,19 +3,16 @@ package ua.edu.ucu.smartarr;
 public abstract class SmartArrayDecorator implements SmartArray {
 
     protected SmartArray smartArray;
+    protected String description;
 
-    public SmartArrayDecorator(SmartArray smartArray) {
+    public SmartArrayDecorator(SmartArray smartArray, String description) {
         this.smartArray = smartArray;
+        this.description = description;
     }
 
     @Override
     public Object[] toArray() {
         return smartArray.toArray();
-    }
-
-    @Override
-    public String operationDescription() {
-        return smartArray.operationDescription();
     }
 
     @Override

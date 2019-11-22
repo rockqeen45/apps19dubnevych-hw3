@@ -6,7 +6,7 @@ import ua.edu.ucu.functions.MyPredicate;
 public class FilterDecorator extends SmartArrayDecorator{
 
     public FilterDecorator(SmartArray smartArray, MyPredicate pr) {
-        super(smartArray);
+        super(smartArray, smartArray.operationDescription());
         BaseArray filterArr = new BaseArray(new Object[0]);
 
         for (int i = 0; i < smartArray.size(); i++) {
@@ -15,5 +15,10 @@ public class FilterDecorator extends SmartArrayDecorator{
             }
         }
         this.smartArray = filterArr;
+    }
+
+    @Override
+    public String operationDescription() {
+        return "Filter " + description;
     }
 }

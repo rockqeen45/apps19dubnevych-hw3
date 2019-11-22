@@ -51,8 +51,6 @@ public class SmartArrayApp {
 
     public static String[]
             findDistinctStudentNamesFrom2ndYearWithGPAgt4AndOrderedBySurname(Student[] students) {
-        SmartArray stdArray = new BaseArray(students);
-        stdArray = new DistinctDecorator(stdArray);
 
         MyPredicate pr = new MyPredicate() {
             @Override
@@ -61,17 +59,13 @@ public class SmartArrayApp {
                 return s.getYear() == 2 && s.getGPA() >= 4;
             }
         };
-        stdArray = new FilterDecorator(stdArray, pr);
 
-        MyComparator cmp = new MyComparator() {
+        MyComparator<Student> cmp = new MyComparator<Student>() {
             @Override
-            public int compare(Object fst, Object snd) {
-                Student first = (Student) fst;
-                Student second = (Student) snd;
-                return first.getSurname().compareTo(second.getSurname());
+            public int compare(Student fst, Student snd) {
+                return fst.getSurname().compareTo(snd.getSurname());
             }
         };
-        stdArray = new SortDecorator(stdArray, cmp);
 
         MyFunction func = new MyFunction() {
             @Override
@@ -80,8 +74,13 @@ public class SmartArrayApp {
                 return stud.getSurname() + " " + stud.getName();
             }
         };
-        stdArray = new MapDecorator(stdArray, func);
 
+        SmartArray stdArray = new BaseArray(students);
+        stdArray = new DistinctDecorator(stdArray);
+        stdArray = new FilterDecorator(stdArray, pr);
+        stdArray = new SortDecorator(stdArray, cmp);
+        stdArray = new MapDecorator(stdArray, func);
+        
         Object[] result = stdArray.toArray();
         return Arrays.copyOf(result, result.length, String[].class);
     }

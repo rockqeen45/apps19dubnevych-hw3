@@ -11,9 +11,9 @@ import java.util.Comparator;
  *
  * @author Andrii_Rodionov
  */
-public interface MyComparator extends Comparator<Object>{
+public interface MyComparator<T> extends Comparator<T>{
 
     @Override
-    int compare(Object fst, Object snd);
+    int compare(T fst, T snd);
     
 }
